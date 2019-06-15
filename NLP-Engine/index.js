@@ -31,6 +31,7 @@ consumer.on('message',async function(message) {
     } else {
       result = await rateModel.processText(request.value);      
     }
+
     producer.send([
       {topic: 'nlp-business', messages: JSON.stringify(result)}
     ], () => console.log("Sent result to Dichie Service"));

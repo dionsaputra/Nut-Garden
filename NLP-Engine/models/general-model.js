@@ -36,7 +36,6 @@ general_model.addDocument('id', 'pengen sixpack', GENERAL_HEALTH_TIPS);
 
 // Train also the NLG
 
-
 general_model.addAnswer('id', GENERAL_LIST, 'nih list tempat olahraga di sekitar sini');
 general_model.addAnswer('id', GENERAL_RECOMENDATION, 'nih daftar tempat olahraga yang menarik di sekitar sini, di liat-liat dulu aja');
 
@@ -61,7 +60,6 @@ general_model.addAnswer('id', GENERAL_HEALTH_TIPS, 'ini list tips untuk hidup se
 module.exports = {
   generalModel : general_model,
   processText : async function(text) {
-    console.log(text);
     response = await general_model.process('id', text);
     if(response.classifications[0].label !== 'None') {
       result = {

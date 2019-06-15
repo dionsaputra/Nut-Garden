@@ -2,7 +2,6 @@ const { NlpManager } = require('node-nlp');
 
 const rate_model = new NlpManager({ languages: ['id'] });
 
-
 module.exports = {
   rateModel : rate_model,
   processText : async function(text) {
@@ -11,10 +10,16 @@ module.exports = {
       entities = response.entities
       for (let entityObject in entities){
         if (response.entities[entityObject].entity === 'number'){
-          return response.entities[entityObject].resolution.strValue;
+          return {
+            success : true,
+            value : response.entities[entityObject].resolution.strValue
+          }
         }
       }
     }
-    return 'Maaf, Dichie tidak mengerti maksudnya :(';
+    return {
+      success : false,
+      value : 'Maaf, Dichie tidak mengerti maksudnya :('
+    }
   }
 };
