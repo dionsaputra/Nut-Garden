@@ -1,19 +1,31 @@
 const kafka = require('kafka-node');
-const kafkaClient = new kafka.KafkaClient({kafkaHost: '10.232.75.137:9092'});
+const kafkaClient = new kafka.KafkaClient({kafkaHost: '127.0.0.1:9092'});
 const consumer =  new kafka.Consumer(kafkaClient, [{topic: 'business-nlp'}]);
 const producer = new kafka.Producer(kafkaClient);
+const generalModel = require('./models/general-model');
+const reminderModel = require('./models/reminder-model');
+const rateModel = require('./models/rate-model');
 
-producer.on('ready', function(err) {
-  console.log('asdf');
-  setInterval(() => {
+
+
+consumer.on('message',async function(message) {
+  let request = JSON.parse(message.value);
+  try {
+    let result = Object;
+    if (request.key === 'GENERAL') {
+      result = await generalModel.processText(request.value);
+    } else if (request.key === 'REMINDER') {
+      result = await reminderModel.processText(request.value);      
+    } else {
+      result = await rateModel.processText(request.value);      
+    }
+
     producer.send([
-      {topic: 'nlp-business', messages: 'hello'}
-    ], () => console.log("Sent message from producer"));
-  }, 1000);
-});
-
-
-consumer.on('message', function(message) {
-  console.log("Received message in consumer : " + JSON.stringify(message));
+      {topic: 'nlp-business', messages: JSON.stringify(result)}
+    ], () => console.log("Sent result to Dichie Service"));
+  
+  } catch(err) {
+    console.log(err);
+  }
 });
 
