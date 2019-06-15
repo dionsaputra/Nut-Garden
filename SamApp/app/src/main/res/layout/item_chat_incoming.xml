@@ -31,7 +31,7 @@
             android:text="Dichie" />
 
         <TextView
-            android:id="@+id/tvChatOutgoingContent"
+            android:id="@+id/tvChatIncomingContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/incoming_chat_bubble"

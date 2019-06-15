@@ -3,6 +3,7 @@ package ds.nutgarden.ui.chatroom
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import ds.nutgarden.R
+import kotlinx.android.synthetic.main.activity_main.*
 
 class ChatActivity : AppCompatActivity() {
 
