@@ -3,22 +3,26 @@ package ds.nutgarden.ui.chatroom.activity
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
+import androidx.core.view.GravityCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import ds.nutgarden.R
 import ds.nutgarden.data.model.*
 import ds.nutgarden.ui.chatroom.adapter.ChatAdapter
+import ds.nutgarden.ui.feed.activity.FeedActivity
 import ds.nutgarden.ui.venuedetail.VenueDetailActivity
 import ds.nutgarden.util.toFormattedTime
 import ds.nutgarden.viewmodel.ChatRoomViewModel
 import kotlinx.android.synthetic.main.activity_chat.*
 import java.util.*
+
 
 class ChatActivity : AppCompatActivity() {
 
@@ -51,6 +55,7 @@ class ChatActivity : AppCompatActivity() {
     }
 
     private fun initView() {
+
         sendChat(ChatDate(Date()))
 
         Handler().postDelayed({
@@ -165,6 +170,13 @@ class ChatActivity : AppCompatActivity() {
 //        sendChat(recVenues)
     }
 
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            android.R.id.home -> drawerLayout.openDrawer(GravityCompat.START)
+        }
+        return true
+    }
+
     private fun observeViewModel() {
         viewModel.newChat.observe(this, Observer {
             chatAdapter.addItem(it)
@@ -176,9 +188,18 @@ class ChatActivity : AppCompatActivity() {
         ibChatSend.setOnClickListener {
             if (tvChatInput.text.isNotEmpty()) {
                 sendChat(ChatMessage(tvChatInput.text.toString(), "18.00", false))
-                sendChat(ChatMessage("Hallo ${tvChatInput.text.toString()}", "18.01", true))
+                sendChat(ChatMessage("Hallo ${tvChatInput.text}", "18.01", true))
                 tvChatInput.text.clear()
             }
+        }
+
+        toolbar.setNavigationOnClickListener { drawerLayout.openDrawer(GravityCompat.START) }
+        navigationView.setNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.menu_feed -> startActivity(Intent(this, FeedActivity::class.java))
+            }
+            drawerLayout.closeDrawer(GravityCompat.START)
+            true
         }
     }
 
