@@ -5,7 +5,7 @@ module.exports = {
   },
   context: {
     GENERAL: 'GENERAL',
-    REMINDER: 'REGULAR',
+    REMINDER: 'REMINDER',
     RATE: 'RATE'
   },
   venue: {
