@@ -37,7 +37,18 @@ router.get('/:venueId/remind', function(req, res) {
 
 router.get('/', async function(req, res) {
   let userId = req.query.userId;
-  let venues = await getVenues(userId);
+  let venues = await helper.getVenues(userId);
+  console.log("HELPER");
+  console.log(console.log(helper));
+
+  let test = {
+    a: () => {
+      console.log("INSIDE");
+      console.log(this);
+    }
+  }
+  console.log("OUTSIDE");
+  test.a();
   res.send({success: true, data: venues});
 });
 
