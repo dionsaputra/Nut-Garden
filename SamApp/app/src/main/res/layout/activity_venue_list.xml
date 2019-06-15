@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.user.venuelist.VenueListActivity">
+    tools:context=".ui.venuelist.VenueListActivity">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

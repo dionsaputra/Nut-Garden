@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="extra_small_space">4dp</dimen>
+    <dimen name="chat_left_padding">20dp</dimen>
+    <dimen name="chat_end_padding">10dp</dimen>
+    <dimen name="small_space">8dp</dimen>
+    <dimen name="normal_space">16dp</dimen>
+    <item name="chat_font_size" type="dimen" format="float">13.5sp</item>
+</resources>

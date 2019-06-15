@@ -1,13 +1,13 @@
-package ds.nutgarden.ui.user.venuelist
+package ds.nutgarden.ui.chatroom
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import ds.nutgarden.R
 
-class VenueListActivity : AppCompatActivity() {
+class ChatActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_venue_list)
+        setContentView(R.layout.activity_main)
     }
 }
