@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:background="@drawable/round_background"
+        android:background="@drawable/solid_round_background"
         android:padding="@dimen/extra_small_space"
         tools:text="12 Januari 2019" />
 
