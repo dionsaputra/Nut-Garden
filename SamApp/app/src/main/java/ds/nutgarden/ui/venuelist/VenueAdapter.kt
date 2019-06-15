@@ -1,16 +1,16 @@
-package ds.nutgarden.ui.user.venuelist
+package ds.nutgarden.ui.venuelist
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ds.nutgarden.R
-import ds.nutgarden.data.remote.model.Venue
+import ds.nutgarden.data.model.Venue
 
 class VenueAdapter(var data: List<Venue>) : RecyclerView.Adapter<VenueAdapter.VenueHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VenueHolder {
-        return VenueHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_venue, parent, false))
+        return VenueHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_rec_venue, parent, false))
     }
 
     override fun getItemCount() = data.size
