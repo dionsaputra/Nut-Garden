@@ -2,13 +2,13 @@ package ds.nutgarden.ui.chatroom.holder
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import ds.nutgarden.data.model.Message
+import ds.nutgarden.data.model.ChatMessage
 import kotlinx.android.synthetic.main.item_chat_incoming.view.*
 import kotlinx.android.synthetic.main.item_chat_outgoing.view.*
 
 class ChatMessageHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    fun bind(item: Message) {
+    fun bind(item: ChatMessage) {
         if (item.isIncoming) {
             bindIncomingMessage(item)
         } else {
@@ -16,12 +16,12 @@ class ChatMessageHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         }
     }
 
-    private fun bindIncomingMessage(item: Message) {
+    private fun bindIncomingMessage(item: ChatMessage) {
         itemView.tvChatIncomingTime.text = item.time
         itemView.tvChatIncomingContent.text = item.content
     }
 
-    fun bindOutgoingMessage(item: Message) {
+    fun bindOutgoingMessage(item: ChatMessage) {
         itemView.tvChatOutgoingTime.text = item.time
         itemView.tvChatOutgoingContent.text = item.content
     }

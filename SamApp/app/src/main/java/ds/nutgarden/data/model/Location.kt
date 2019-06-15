@@ -6,4 +6,4 @@ data class Location(
     @SerializedName("address") val address: String,
     @SerializedName("lon") val longitude: Double,
     @SerializedName("lat") val latitude: Double
-) {}
+) : Chat {}

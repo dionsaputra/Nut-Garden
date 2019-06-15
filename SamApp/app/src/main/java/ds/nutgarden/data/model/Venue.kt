@@ -18,7 +18,7 @@ data class Venue(
 ) {
 
     fun getRecommendationType(): String {
-        return ""
+        return "Populer"
     }
 
     fun getDistance(): Double {
