@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import ds.nutgarden.R
-import ds.nutgarden.data.model.Chat
+import ds.nutgarden.data.local.model.Chat
 
 class ChatAdapter(var data: List<Chat>) : RecyclerView.Adapter<ChatAdapter.ChatHolder>() {
 

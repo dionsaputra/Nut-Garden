@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ds.nutgarden.R
-import ds.nutgarden.data.model.Venue
+import ds.nutgarden.data.remote.model.Venue
 
 class VenueAdapter(var data: List<Venue>) : RecyclerView.Adapter<VenueAdapter.VenueHolder>() {
 
