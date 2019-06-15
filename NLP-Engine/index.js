@@ -19,29 +19,22 @@ const rateModel = require('./models/rate-model');
 // })();
 
 
-// (async() => {
-//   const response = await generalModel.process('id', 'olahraga apa ya hari ini ?');
-//   console.log(computeGeneralModel.halo());
-//   console.log(response);  
-// })();
-
-// producer.on('ready', function() {
-//   setInterval(() => {
-//     producer.send([
-//       {topic: 'nlp-business', messages: 'hello'}
-//     ], () => console.log("Sent message from producer"));
-//   }, 1000);
-// });
-
-
 consumer.on('message',async function(message) {
   // let text = JSON.stringify(message)
+  request = JSON.parse(message.value);
   try {
-    let text = await generalModel.processText(message.value);
-    console.log(text);
+    let result = Object;
+    if (request.key === 'GENERAL') {
+      result = await generalModel.processText(request.value);
+    } else if (request.key === 'REMINDER') {
+      result = await reminderModel.processText(request.value);      
+    } else {
+      result = await rateModel.processText(request.value);      
+    }
+
     producer.send([
-      {topic: 'nlp-business', messages: JSON.stringify(text)}
-    ], () => console.log("Sent message from producer"));
+      {topic: 'nlp-business', messages: JSON.stringify(result)}
+    ], () => console.log("Sent result to Dichie Service"));
   
   } catch(err) {
     console.log(err);
