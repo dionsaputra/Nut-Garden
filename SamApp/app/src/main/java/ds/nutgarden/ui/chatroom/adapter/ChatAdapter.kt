@@ -4,16 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ds.nutgarden.R
-import ds.nutgarden.data.model.Message
-import ds.nutgarden.data.model.Venue
+import ds.nutgarden.data.model.*
 import ds.nutgarden.ui.chatroom.holder.ChatDateHolder
 import ds.nutgarden.ui.chatroom.holder.ChatMessageHolder
 import ds.nutgarden.ui.chatroom.holder.ChatVenuesHolder
 import java.util.*
 
-class ChatAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
-    private val data: List<Any> = emptyList()
+class ChatAdapter(val data: MutableList<Chat>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
         private const val ITEM_UNKNOWN = -1
@@ -26,9 +23,9 @@ class ChatAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     @Suppress("UNCHECKED_CAST")
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is ChatDateHolder -> holder.bind(data[position] as Date)
-            is ChatMessageHolder -> holder.bind(data[position] as Message)
-            is ChatVenuesHolder -> holder.bind(data[position] as List<Venue>)
+            is ChatDateHolder -> holder.bind(data[position] as ChatDate)
+            is ChatMessageHolder -> holder.bind(data[position] as ChatMessage)
+            is ChatVenuesHolder -> holder.bind(data[position] as ChatRecVenues)
         }
     }
 
@@ -52,13 +49,17 @@ class ChatAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun getItemViewType(position: Int): Int {
         return when {
-            data[position] is Date -> ITEM_DATE
-            data[position] is Message ->
-                if ((data[position] as Message).isIncoming) ITEM_INCOMING_MESSAGE else ITEM_OUTGOING_MESSAGE
+            data[position] is ChatDate -> ITEM_DATE
+            data[position] is ChatMessage ->
+                if ((data[position] as ChatMessage).isIncoming) ITEM_INCOMING_MESSAGE else ITEM_OUTGOING_MESSAGE
 
-            data[position] is List<*> -> ITEM_VENUES
+            data[position] is ChatRecVenues -> ITEM_VENUES
             else -> ITEM_UNKNOWN
         }
     }
 
+    fun addItem(item: Chat) {
+        data.add(item)
+        notifyItemInserted(data.size - 1)
+    }
 }

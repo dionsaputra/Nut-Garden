@@ -15,7 +15,7 @@ class RecVenueHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         itemView.tvVenueCardDistance.text = item.getDistance().toString()
         itemView.tvRecVenueRating.text = item.rating.toString()
 
-        Glide.with(itemView).load(item.picture) to itemView.ivRecVenuePicture
+        Glide.with(itemView).load(item.picture).into(itemView.ivRecVenuePicture)
     }
 
 }
