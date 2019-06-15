@@ -1,6 +1,7 @@
 package ds.nutgarden.ui.chatroom.holder
 
 import android.view.View
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import ds.nutgarden.data.model.Venue
@@ -8,7 +9,7 @@ import kotlinx.android.synthetic.main.item_rec_venue.view.*
 
 class RecVenueHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    fun bind(item: Venue) {
+    fun bind(item: Venue, onReminderClick: (Venue) -> Unit, onItemClick: (Venue, ImageView) -> Unit) {
         itemView.chipRecVenueCategory.text = item.getRecommendationType()
         itemView.tvVenueCardName.text = item.name
         itemView.tvVenueCardType.text = item.type
@@ -16,6 +17,8 @@ class RecVenueHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         itemView.tvRecVenueRating.text = item.rating.toString()
 
         Glide.with(itemView).load(item.picture).into(itemView.ivRecVenuePicture)
+        itemView.bRecVenueReminder.setOnClickListener { onReminderClick(item) }
+        itemView.setOnClickListener { onItemClick(item, itemView.ivRecVenuePicture) }
     }
 
 }

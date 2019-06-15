@@ -3,6 +3,6 @@
     <color name="colorPrimary">#1b7fbd</color>
     <color name="colorPrimaryDark">#00538c</color>
     <color name="colorAccent">#f3a953</color>
-    <color name="colorIncomingBubble">#f6ef98</color>
-    <color name="colorOutgoingBubble">#1b7fbd</color>
+    <color name="colorOutgoingBubble">#f3a953</color>
+    <color name="colorIncomingBubble">#1b7fbd</color>
 </resources>

@@ -47,7 +47,7 @@
                 android:paddingEnd="@dimen/chat_end_padding"
                 android:paddingBottom="@dimen/chat_end_padding"
                 android:text="@string/lorem_ipsum"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:textSize="@dimen/chat_font_size"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

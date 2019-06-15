@@ -14,9 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="ds.nutgarden.ui.venuelist.VenueListActivity"></activity>
-        <activity android:name="ds.nutgarden.ui.dashboard.DashboardActivity" />
-        <activity android:name="ds.nutgarden.ui.chatroom.ChatActivity">
+        <activity android:name=".ui.venuedetail.VenueDetailActivity"></activity>
+        <activity android:name=".ui.venuelist.VenueListActivity" />
+        <activity android:name=".ui.dashboard.DashboardActivity" />
+        <activity android:name=".ui.chatroom.activity.ChatActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

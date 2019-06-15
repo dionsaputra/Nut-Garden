@@ -14,3 +14,9 @@ fun Date?.toFormattedDate(): String {
         return "${dayNames[day]}, ${date} ${monthNames[month]} ${year + 1900}"
     } ?: return "Tanggal tidak tercantum"
 }
+
+fun Date?.toFormattedTime(): String {
+    this?.let {
+        return "${this.hours}:${this.minutes}"
+    } ?: return "-"
+}

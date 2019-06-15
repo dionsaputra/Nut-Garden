@@ -2,15 +2,20 @@ package ds.nutgarden.ui.chatroom.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import ds.nutgarden.R
 import ds.nutgarden.data.model.*
 import ds.nutgarden.ui.chatroom.holder.ChatDateHolder
 import ds.nutgarden.ui.chatroom.holder.ChatMessageHolder
 import ds.nutgarden.ui.chatroom.holder.ChatVenuesHolder
-import java.util.*
 
-class ChatAdapter(val data: MutableList<Chat>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ChatAdapter(
+    val data: MutableList<Chat>,
+    private val onReminderClick: (Venue) -> Unit,
+    private val onItemClick: (Venue, ImageView) -> Unit
+) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
         private const val ITEM_UNKNOWN = -1
@@ -25,7 +30,7 @@ class ChatAdapter(val data: MutableList<Chat>) : RecyclerView.Adapter<RecyclerVi
         when (holder) {
             is ChatDateHolder -> holder.bind(data[position] as ChatDate)
             is ChatMessageHolder -> holder.bind(data[position] as ChatMessage)
-            is ChatVenuesHolder -> holder.bind(data[position] as ChatRecVenues)
+            is ChatVenuesHolder -> holder.bind(data[position] as ChatRecVenues, onReminderClick, onItemClick)
         }
     }
 

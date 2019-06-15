@@ -16,7 +16,6 @@ data class Venue(
     @SerializedName("price") val price: Long,
     @SerializedName("__v") val version: Int
 ) {
-
     fun getRecommendationType(): String {
         return "Populer"
     }
@@ -24,5 +23,4 @@ data class Venue(
     fun getDistance(): Double {
         return 0.0
     }
-
 }
