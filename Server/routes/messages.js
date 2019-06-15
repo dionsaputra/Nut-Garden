@@ -8,11 +8,9 @@ const kafka = require('../lib/kafka');
 router.post('/', async function(req, res) {
   let message = req.body.message;
   let userId = req.query.userId;
-  let km1 = new kafka.KeyedMessage('CONTEXT', state.context);
-  let km2 = new kafka.KeyedMessage('MESSAGE', message);
   kafka.producer.send([{
     topic: constant.kafka.BUSINESS_MESSAGE,
-    messages: [km1, km2]
+    messages: JSON.stringify({key: state.context, value: message})
   }], function(err, data) {
     console.log(err);
     console.log(data);
