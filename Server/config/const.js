@@ -16,5 +16,9 @@ module.exports = {
     BADMINTON: 'badminton',
     SEPAK_BOLA: 'sepak bola'
   },
-  MIN_DISTANCE: 10 // in km
+  MIN_DISTANCE: 10, // in km
+  kafka: {
+    BUSINESS_MESSAGE: 'business-nlp',
+    MESSAGE_BUSINESS: 'nlp-business'
+  }
 }
