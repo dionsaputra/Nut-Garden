@@ -61,6 +61,7 @@ general_model.addAnswer('id', GENERAL_HEALTH_TIPS, 'ini list tips untuk hidup se
 module.exports = {
   generalModel : general_model,
   processText : async function(text) {
+    console.log(text);
     response = await general_model.process('id', text);
     if(response.classifications[0].label !== 'None') {
       result = {
