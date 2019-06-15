@@ -71,7 +71,7 @@ module.exports = {
     }
     return {
         key : 'NOT_FOUND',
-        value : 'maaf, dichie tidak mengerti pertanyaannya. Bisa diulang lagi?'
+        value : 'maaf, dichie tidak mengerti maksud kamu. Bisa diulang lagi?'
     };
   }
 };

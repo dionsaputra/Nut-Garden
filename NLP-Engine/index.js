@@ -7,10 +7,14 @@ const reminderModel = require('./models/reminder-model');
 const rateModel = require('./models/rate-model');
 
 (async function () {
-  // console.log( await generalModel.processText('why not'));
+  console.log( await generalModel.processText('gmna caranya aku jadi sehat ?'));
+  console.log( await generalModel.processText('aku butuh olahraga nih :\'('));
+  console.log( await generalModel.processText('pengen cari lapangan sekitar sini dong'));
+  console.log( await generalModel.processText('aduh galau :(?'))
+
   // console.log(await reminderModel.processText('ingetin 0 olahraga dong sama jam 19:00'));
-  console.log(await rateModel.processText('kasih 19:00 nilainya 3 aja deh tempatnya ga gitu bagus'));
-  console.log(await rateModel.processText('gamau kasih nilai'));
+  // console.log(await rateModel.processText('kasih 19:00 nilainya 3 aja deh tempatnya ga gitu bagus'));
+  // console.log(await rateModel.processText('gamau kasih nilai'));
   
 })();
 
