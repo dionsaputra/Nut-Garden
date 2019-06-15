@@ -2,7 +2,6 @@ const { NlpManager } = require('node-nlp');
 
 const reminder_model = new NlpManager({ languages: ['id'] });
 
-
 module.exports = { 
   reminderModel : reminder_model,
   processText : async function(text) {
@@ -13,8 +12,8 @@ module.exports = {
          return response.entities[entityObject].resolution.values[0].value;
       }
     }
-    
-    return 'not found time'; 
+
+    return 'Maaf, Dichie tidak mengerti maksudnya :('; 
   }
 };
 

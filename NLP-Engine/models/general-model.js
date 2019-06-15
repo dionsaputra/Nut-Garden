@@ -60,9 +60,19 @@ general_model.addAnswer('id', GENERAL_HEALTH_TIPS, 'ini list tips untuk hidup se
 
 module.exports = {
   generalModel : general_model,
-  halo : async function(test) {
-    console.log(test)
-    response = await general_model.process('id', 'list tempat olahraga dong');
-    return(response);
+  processText : async function(text) {
+    console.log(text);
+    response = await general_model.process('id', text);
+    if(response.classifications[0].label !== 'None') {
+      result = {
+        key : response.intent,
+        value : response.answer
+      }
+      return result;
+    }
+    return {
+        key : 'NOT_FOUND',
+        value : 'maaf, dichie tidak mengerti maksud kamu. Bisa diulang lagi?'
+    };
   }
 };
