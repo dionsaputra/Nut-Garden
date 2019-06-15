@@ -1,3 +1,4 @@
+const constant = require('../config/const');
 module.exports = {
   measureDistance: function(lat1, lon1, lat2, lon2) {  // generally used geo measurement function
     var R = 6378.137; // Radius of earth in KM
@@ -40,5 +41,8 @@ module.exports = {
       return a.createdAt - b.createdAt;
     });
     return sortedVenuesByRating.concat(sortedVenuesByCreatedAt);
+  },
+  getTips: () => {
+    return constant.TIPS[Math.floor(Math.random() * constant.TIPS.length)];
   }
 }
