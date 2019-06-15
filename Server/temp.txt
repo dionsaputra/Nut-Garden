@@ -1,0 +1,45 @@
+const User = require('./models/User');
+const constant = require('./config/const');
+const Venue = require('./models/Venue);
+
+User.create({
+  name: 'Priagung Satyagama',
+  username: 'priagung',
+  password: 'priagung',
+  interests: [constant.venue.RENANG, constant.venue.VOLI, constant.venue.FUTSAL],
+  avatar: '/images/priagung.jpg',
+  type: constant.user.REGULAR
+});
+
+User.create({
+  name: 'Ricky Kennedy',
+  username: 'ricky',
+  password: 'ricky',
+  interests: [constant.venue.RENANG, constant.venue.VOLI, constant.venue.FUTSAL],
+  avatar: '/images/ricky.jpg',
+  type: constant.user.PREMIUM
+});
+
+User.create({
+  name: 'Dion Saputra',
+  username: 'dion',
+  password: 'dion',
+  interests: [constant.venue.RENANG, constant.venue.VOLI, constant.venue.FUTSAL],
+  avatar: '/images/dion.jpg',
+  type: constant.user.PREMIUM
+});
+
+(async function() {
+  const sender1 = await User.findOne({username: 'ricky'});
+  const sender2 = await User.findOne({username: 'dion'});
+  Feed.create({
+    message: 'Pagi pagi mending main voli',
+    date: Date.now(),
+    comments: [
+    ],
+    starter: sender1._id
+  }, function(result, error) {
+    console.log(error);
+  });
+})()
+
