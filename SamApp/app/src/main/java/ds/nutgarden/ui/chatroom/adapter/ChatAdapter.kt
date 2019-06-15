@@ -11,9 +11,7 @@ import ds.nutgarden.ui.chatroom.holder.ChatMessageHolder
 import ds.nutgarden.ui.chatroom.holder.ChatVenuesHolder
 import java.util.*
 
-class ChatAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
-    private val data: List<Any> = emptyList()
+class ChatAdapter(val data: MutableList<Any>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
         private const val ITEM_UNKNOWN = -1
@@ -59,6 +57,11 @@ class ChatAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             data[position] is List<*> -> ITEM_VENUES
             else -> ITEM_UNKNOWN
         }
+    }
+
+    fun addItem(item: Any) {
+        data.add(item)
+        notifyDataSetChanged()
     }
 
 }
