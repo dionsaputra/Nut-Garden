@@ -13,7 +13,7 @@ router.put('/:userId/premium', async function(req, res) {
   let user = await User.findById(userId)
   user.type = constant.user.PREMIUM;
   await user.save();
-  res.send({success: true});
+  res.send({success: true, data: null});
 });
 
 module.exports = router;

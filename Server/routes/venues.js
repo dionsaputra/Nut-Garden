@@ -4,6 +4,7 @@ const Venue = require('../models/Venue');
 const User = require('../models/User');
 const helper = require('../lib/helper');
 const constant = require('../config/const');
+const state = require('../config/state');
 
 
 const getVenues = async userId => {
@@ -27,6 +28,12 @@ const getVenues = async userId => {
   }
   return venues;
 }
+
+router.get('/:venueId/remind', function(req, res) {
+  state.changeContext(constant.context.REMINDER);
+  state.setVenueId(req.params.venueId);
+  res.send({success: true, data: null});
+});
 
 router.get('/', async function(req, res) {
   let userId = req.query.userId;

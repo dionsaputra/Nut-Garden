@@ -5,9 +5,10 @@ const constant = require('../config/const');
 const state = require('../config/state');
 const kafka = require('../lib/kafka');
 
+
 router.post('/', async function(req, res) {
   let message = req.body.message;
-  let userId = req.query.userId;
+  // let userId = req.query.userId;
   kafka.producer.send([{
     topic: constant.kafka.BUSINESS_MESSAGE,
     messages: JSON.stringify({key: state.context, value: message})
