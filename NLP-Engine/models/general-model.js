@@ -5,7 +5,6 @@ const GENERAL_RECOMENDATION = 'GENERAL_RECOMMENDATION';
 const GENERAL_HEALTH_TIPS = 'GENERAL_HEALTH_TIPS';
 
 const general_model = new NlpManager({ languages: ['id'] });
-// Adds the utterances and intents for the NLP
 
 general_model.addDocument('id', 'daftar lapangan daerah sini dong',GENERAL_LIST)
 general_model.addDocument('id', 'ada tempat olahraga apa disekitar sini', GENERAL_LIST);
@@ -45,15 +44,6 @@ general_model.addAnswer('id', GENERAL_HEALTH_TIPS, 'ini list tips untuk hidup se
 // Train and save the model.
 (async() => {
     await general_model.train();
-    // general_model.save('GENERAL_MODEL.nlp');
-    // const response = await general_model.process('id', 'list tempat olahraga dong');
-    // const response1 = await general_model.process('id', 'bingung olahraga apa ya ?');
-
-    // const response2 = await general_model.process('id', 'duh gimana yaa bisa jadi lebih sehat');
-
-    // console.log(response);
-    // console.log(response1);
-
 })();
 
 
