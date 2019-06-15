@@ -4,11 +4,14 @@
 // const producer = new kafka.Producer(kafkaClient);
 const generalModel = require('./models/general-model');
 const reminderModel = require('./models/reminder-model');
+const rateModel = require('./models/rate-model');
 
 (async function () {
-  // console.log( await generalModel.halo('why cannot'));
-  console.log(await reminderModel.processText('ingetin 0 olahraga dong sama jam 19:00'));
-
+  // console.log( await generalModel.processText('why not'));
+  // console.log(await reminderModel.processText('ingetin 0 olahraga dong sama jam 19:00'));
+  console.log(await rateModel.processText('kasih 19:00 nilainya 3 aja deh tempatnya ga gitu bagus'));
+  console.log(await rateModel.processText('gamau kasih nilai'));
+  
 })();
 
 
