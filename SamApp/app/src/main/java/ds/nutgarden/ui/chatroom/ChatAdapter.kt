@@ -19,15 +19,17 @@ class ChatAdapter() : RecyclerView.Adapter<BaseChatViewHolder<*>>() {
     companion object {
         private const val ITEM_UNKNOWN = -1
         private const val ITEM_DATE = 0
-        private const val ITEM_MESSAGE = 1
-        private const val ITEM_VENUES = 2
+        private const val ITEM_INCOMING_MESSAGE = 1
+        private const val ITEM_OUTGOING_MESSAGE = 2
+        private const val ITEM_VENUES = 3
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseChatViewHolder<*> {
         val inflater = LayoutInflater.from(parent.context)
         return when (viewType) {
             ITEM_DATE -> ChatDateHolder(inflater.inflate(R.layout.item_chat_date, parent, false))
-            ITEM_MESSAGE -> ChatMessageHolder(inflater.inflate(R.layout.item_chat_message, parent, false))
+            ITEM_INCOMING_MESSAGE -> ChatMessageHolder(inflater.inflate(R.layout.item_chat_incoming, parent, false))
+            ITEM_OUTGOING_MESSAGE -> ChatMessageHolder(inflater.inflate(R.layout.item_chat_outgoing, parent, false))
             ITEM_VENUES -> ChatVenuesHolder(inflater.inflate(R.layout.item_chat_venues, parent, false))
             else -> throw IllegalArgumentException("Unknown view type")
         }
@@ -45,10 +47,12 @@ class ChatAdapter() : RecyclerView.Adapter<BaseChatViewHolder<*>>() {
     }
 
     override fun getItemViewType(position: Int): Int {
-        return when (data[position]) {
-            is Date -> ITEM_DATE
-            is Message -> ITEM_MESSAGE
-            is List<*> -> ITEM_VENUES
+        return when {
+            data[position] is Date -> ITEM_DATE
+            data[position] is Message -> {
+                if ((data[position] as Message).isIncoming) ITEM_INCOMING_MESSAGE else ITEM_OUTGOING_MESSAGE
+            }
+            data[position] is List<*> -> ITEM_VENUES
             else -> ITEM_UNKNOWN
         }
     }
