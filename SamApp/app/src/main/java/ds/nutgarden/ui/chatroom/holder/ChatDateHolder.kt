@@ -1,12 +1,14 @@
 package ds.nutgarden.ui.chatroom.holder
 
 import android.view.View
+import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.item_chat_date.view.*
 import java.util.*
 
-class ChatDateHolder(val itemView: View) : BaseChatViewHolder<Date>(itemView) {
+class ChatDateHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    override fun bind(item: Date) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    fun bind(item: Date) {
+        itemView.tvChatDate.text = item.toString()
     }
 
 }

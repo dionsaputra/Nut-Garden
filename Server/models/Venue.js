@@ -1,8 +1,9 @@
-import { Schema, model } from 'mongoose';
-
+const Schema = require('mongoose').Schema;
+const model = require('mongoose').model;
 const venueSchema = Schema({
     name: String,
     rating: Number,
+    visitors: Number,
     picture: String,
     type: String,
     location: {
@@ -11,11 +12,12 @@ const venueSchema = Schema({
       lat: Number,
     },
     available: Number,
-    openHour: Date,
-    closeHour: Date,
-    price: Number
+    openHour: String,
+    closeHour: String,
+    price: Number,
+    createdAt: {type: Date, default: Date.now()}
 });
 
 const Venue = model('Venue', venueSchema);
 
-export default Venue;
+module.exports = Venue;

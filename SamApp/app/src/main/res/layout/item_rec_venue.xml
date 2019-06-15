@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,12 +11,31 @@
         android:layout_height="256dp"
         android:orientation="vertical">
 
-        <ImageView
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
-            android:scaleType="centerCrop"
-            android:src="@drawable/pasaga" />
+            android:layout_weight="2">
+
+            <ImageView
+                android:id="@+id/ivRecVenuePicture"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/pasaga" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipRecVenueCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_margin="@dimen/extra_small_space"
+                android:background="@color/colorAccent"
+                app:chipCornerRadius="@dimen/extra_small_space"
+                app:chipIconTint="@color/colorAccent"
+                tools:text="Popular" />
+
+        </FrameLayout>
+
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -31,7 +51,7 @@
                 tools:text="Pasaga" />
 
             <TextView
-                android:id="@+id/tvVenueCardCategory"
+                android:id="@+id/tvVenueCardType"
                 style="@style/TextAppearance.MaterialComponents.Body2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -43,7 +63,7 @@
                 style="@style/TextAppearance.MaterialComponents.Body2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tvVenueCardCategory"
+                android:layout_below="@id/tvVenueCardType"
                 tools:text="Jarak 2 Km" />
 
             <LinearLayout
@@ -59,6 +79,7 @@
                     android:src="@drawable/ic_star" />
 
                 <TextView
+                    android:id="@+id/tvRecVenueRating"
                     style="@style/TextAppearance.MaterialComponents.Body2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
