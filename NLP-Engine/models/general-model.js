@@ -20,6 +20,7 @@ general_model.addDocument('id', 'pengen olahraga', GENERAL_RECOMENDATION);
 general_model.addDocument('id', 'kalau olahraga dimana ya ?', GENERAL_RECOMENDATION);
 general_model.addDocument('id', 'butuh rekomendasi olahraga', GENERAL_RECOMENDATION);
 general_model.addDocument('id', 'olahraga yang asik apa ya ?', GENERAL_RECOMENDATION);
+general_model.addDocument('id', 'rekomendasi', GENERAL_RECOMENDATION);
 
 general_model.addDocument('id', 'makanan sehat', GENERAL_HEALTH_TIPS);
 general_model.addDocument('id', 'cara hidup sehat', GENERAL_HEALTH_TIPS);
@@ -33,15 +34,12 @@ general_model.addDocument('id', 'cara hidup sehat yang mudah', GENERAL_HEALTH_TI
 general_model.addDocument('id', 'pengen kurus', GENERAL_HEALTH_TIPS); 
 general_model.addDocument('id', 'pengen sixpack', GENERAL_HEALTH_TIPS); 
 
-// Train also the NLG
-
 general_model.addAnswer('id', GENERAL_LIST, 'nih list tempat olahraga di sekitar sini');
 general_model.addAnswer('id', GENERAL_RECOMENDATION, 'nih daftar tempat olahraga yang menarik di sekitar sini, di liat-liat dulu aja');
 
 general_model.addAnswer('id', GENERAL_HEALTH_TIPS, 'nih ada beberapa cara buat hidup sehat');
 general_model.addAnswer('id', GENERAL_HEALTH_TIPS, 'ini list tips untuk hidup sehat!');
 
-// Train and save the model.
 (async() => {
     await general_model.train();
 })();
