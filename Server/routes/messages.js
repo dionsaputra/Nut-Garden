@@ -1,7 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const Venue = require('../models/Venue');
-const User = require('../models/User');
 const helper = require('../lib/helper');
 const constant = require('../config/const');
 const state = require('../config/state');
@@ -28,6 +26,10 @@ router.post('/', async function(req, res) {
     res.send(message);
     return;
   });
-})
+});
+
+router.get('/tips', function(req, res) {
+  res.send({success: true, data: {message: helper.getTips()}});
+});
 
 module.exports = router;
