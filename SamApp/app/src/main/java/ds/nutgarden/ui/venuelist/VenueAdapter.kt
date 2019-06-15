@@ -1,4 +1,4 @@
-package ds.nutgarden.ui.user.venuelist
+package ds.nutgarden.ui.venuelist
 
 import android.view.LayoutInflater
 import android.view.View

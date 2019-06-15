@@ -1,4 +1,4 @@
-package ds.nutgarden.ui.user.dashboard
+package ds.nutgarden.ui.dashboard
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
