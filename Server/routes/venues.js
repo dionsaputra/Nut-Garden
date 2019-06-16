@@ -32,7 +32,7 @@ const getVenues = async userId => {
 router.get('/:venueId/remind', function(req, res) {
   state.changeContext(constant.context.REMINDER);
   state.setVenueId(req.params.venueId);
-  res.send({success: true, data: null});
+  res.send({success: true, data: 'Boleh, mau Dichie ingetin kapan ?'});
 });
 
 router.get('/', async function(req, res) {
@@ -52,10 +52,17 @@ router.get('/', async function(req, res) {
   res.send({success: true, data: venues});
 });
 
+
 router.get('/recommendation', async function(req, res) {
   let userId = req.query.userId;
   let venues = await helper.getRecommendationVenues(userId);
   res.send({success: true, data: venues});
 });
+
+router.get('/:venueId', async function(req, res) {
+  let venue = await Venue.findById(req.params.venueId);
+  res.send({success: true, data: venue});
+})
+
 
 module.exports = router;
