@@ -25,8 +25,10 @@ class VenueDetailActivity : AppCompatActivity() {
 
         val venue = intent.getParcelableExtra<Venue>("venue")
 
-        Glide.with(this).load(AppConstants.BASE_URL + venue.picture)
-            .into(ivVenueDetailPicture)
+//        val temp = venue.picture.split('.');
+//        val newPicturePatch = temp[0]+"-detail.jpg";
+//        Glide.with(this).load(AppConstants.BASE_URL + newPicturePatch)
+//            .into(ivVenueDetailPicture)
 
         tvVenueDetailName.text = venue.name
         tvVenueDetailRating.text = "Rating: ${venue.rating.round(1)} (${venue.visitors} kunjungan)"
