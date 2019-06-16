@@ -4,6 +4,7 @@ const Venue = require('../models/Venue');
 const User = require('../models/User');
 const helper = require('../lib/helper');
 const constant = require('../config/const');
+const state = require('../config/state');
 
 
 const getVenues = async userId => {
@@ -28,16 +29,40 @@ const getVenues = async userId => {
   return venues;
 }
 
+router.get('/:venueId/remind', function(req, res) {
+  state.changeContext(constant.context.REMINDER);
+  state.setVenueId(req.params.venueId);
+  res.send({success: true, data: 'Boleh, mau Dichie ingetin kapan ?'});
+});
+
 router.get('/', async function(req, res) {
   let userId = req.query.userId;
-  let venues = await getVenues(userId);
+  let venues = await helper.getVenues(userId);
+  console.log("HELPER");
+  console.log(console.log(helper));
+
+  let test = {
+    a: () => {
+      console.log("INSIDE");
+      console.log(this);
+    }
+  }
+  console.log("OUTSIDE");
+  test.a();
   res.send({success: true, data: venues});
 });
+
 
 router.get('/recommendation', async function(req, res) {
   let userId = req.query.userId;
   let venues = await helper.getRecommendationVenues(userId);
   res.send({success: true, data: venues});
 });
+
+router.get('/:venueId', async function(req, res) {
+  let venue = await Venue.findById(req.params.venueId);
+  res.send({success: true, data: venue});
+})
+
 
 module.exports = router;

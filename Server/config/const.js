@@ -8,6 +8,12 @@ module.exports = {
     REMINDER: 'REMINDER',
     RATE: 'RATE'
   },
+  intent: {
+    GENERAL_RECOMMENDATION: 'GENERAL_RECOMMENDATION',
+    GENERAL_LIST: 'GENERAL_LIST',
+    GENERAL_HEALTH_TIPS: 'GENERAL_HEALTH_TIPS',
+    NOT_FOUND: 'NOT_FOUND'
+  },
   venue: {
     TENIS: 'tenis',
     RENANG: 'renang',
