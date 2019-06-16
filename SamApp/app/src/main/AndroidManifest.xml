@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.feed.activity.FeedActivity"></activity>
+        <activity android:name=".ui.feed.activity.FeedDetailActivity"></activity>
+        <activity android:name=".ui.feed.activity.FeedActivity" />
         <activity android:name=".ui.venuedetail.VenueDetailActivity" />
         <activity android:name=".ui.venuelist.VenueListActivity" />
         <activity android:name=".ui.dashboard.DashboardActivity" />

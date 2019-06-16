@@ -14,7 +14,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import ds.nutgarden.R
-import ds.nutgarden.data.model.*
+import ds.nutgarden.data.model.Chat
+import ds.nutgarden.data.model.ChatDate
+import ds.nutgarden.data.model.ChatMessage
+import ds.nutgarden.data.model.Venue
 import ds.nutgarden.ui.chatroom.adapter.ChatAdapter
 import ds.nutgarden.ui.feed.activity.FeedActivity
 import ds.nutgarden.ui.venuedetail.VenueDetailActivity
@@ -31,6 +34,7 @@ class ChatActivity : AppCompatActivity() {
     private val onReminderClick: (Venue) -> Unit = {
         val chat = ChatMessage("Ingatkan aku buat ${it.type} di ${it.name} ya", Date().toFormattedTime(), false)
         sendChat(chat)
+        viewModel.sendReminder(it.id)
     }
 
     private val onItemClick: (Venue, ImageView) -> Unit = { venue, venuePicture ->
@@ -39,7 +43,7 @@ class ChatActivity : AppCompatActivity() {
         val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
             this, pairImageView
         )
-        intent.putExtra("venue_detail_id", venue.id)
+        intent.putExtra("venue", venue)
         startActivity(intent, options.toBundle())
     }
 
@@ -87,87 +91,10 @@ class ChatActivity : AppCompatActivity() {
         }, 3000)
 
 
-        val recVenues = ChatRecVenues(
-            listOf(
-                Venue(
-                    Location("Bandung", 100.00, 100.00),
-                    id = "",
-                    name = "Pasaga",
-                    rating = 4.5,
-                    visitors = 10,
-                    picture = "http://unpar.ac.id/wp-content/uploads/2015/10/Siang-Hingga-Malam-660x330.jpg",
-                    type = "Lapangan Futsal",
-                    available = 10,
-                    openHour = "08.00",
-                    closeHour = "20.00",
-                    price = 10_000,
-                    version = 1
-                ),
-                Venue(
-                    Location("Bandung", 100.00, 100.00),
-                    id = "",
-                    name = "Pasaga",
-                    rating = 4.5,
-                    visitors = 10,
-                    picture = "http://unpar.ac.id/wp-content/uploads/2015/10/Siang-Hingga-Malam-660x330.jpg",
-                    type = "Lapangan Futsal",
-                    available = 10,
-                    openHour = "08.00",
-                    closeHour = "20.00",
-                    price = 10_000,
-                    version = 1
-                ),
-                Venue(
-                    Location("Bandung", 100.00, 100.00),
-                    id = "",
-                    name = "Pasaga",
-                    rating = 4.5,
-                    visitors = 10,
-                    picture = "http://unpar.ac.id/wp-content/uploads/2015/10/Siang-Hingga-Malam-660x330.jpg",
-                    type = "Lapangan Futsal",
-                    available = 10,
-                    openHour = "08.00",
-                    closeHour = "20.00",
-                    price = 10_000,
-                    version = 1
-                ),
-                Venue(
-                    Location("Bandung", 100.00, 100.00),
-                    id = "",
-                    name = "Pasaga",
-                    rating = 4.5,
-                    visitors = 10,
-                    picture = "http://unpar.ac.id/wp-content/uploads/2015/10/Siang-Hingga-Malam-660x330.jpg",
-                    type = "Lapangan Futsal",
-                    available = 10,
-                    openHour = "08.00",
-                    closeHour = "20.00",
-                    price = 10_000,
-                    version = 1
-                ),
-                Venue(
-                    Location("Bandung", 100.00, 100.00),
-                    id = "",
-                    name = "Pasaga",
-                    rating = 4.5,
-                    visitors = 10,
-                    picture = "http://unpar.ac.id/wp-content/uploads/2015/10/Siang-Hingga-Malam-660x330.jpg",
-                    type = "Lapangan Futsal",
-                    available = 10,
-                    openHour = "08.00",
-                    closeHour = "20.00",
-                    price = 10_000,
-                    version = 1
-                )
-            )
-        )
-
         rvChat.apply {
             adapter = chatAdapter
             layoutManager = LinearLayoutManager(context)
         }
-
-//        sendChat(recVenues)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -182,13 +109,27 @@ class ChatActivity : AppCompatActivity() {
             chatAdapter.addItem(it)
             rvChat.smoothScrollToPosition(chatAdapter.data.size - 1)
         })
+
+        viewModel.reminder.observe(this, Observer {
+            if (it) {
+                Handler().postDelayed({
+                    sendChat(
+                        ChatMessage(
+                            "Hai, jangan lupa olahraga. Oh iya kamu kasih rating berapa untuk tempat olahraga ini?",
+                            Date().toFormattedTime(),
+                            true
+                        )
+                    )
+                }, 100_000)
+            }
+        })
     }
 
     private fun setListener() {
         ibChatSend.setOnClickListener {
             if (tvChatInput.text.isNotEmpty()) {
-                sendChat(ChatMessage(tvChatInput.text.toString(), "18.00", false))
-                sendChat(ChatMessage("Hallo ${tvChatInput.text}", "18.01", true))
+                sendChat(ChatMessage(tvChatInput.text.toString(), Date().toFormattedTime(), false))
+                viewModel.postMessage(tvChatInput.text.toString())
                 tvChatInput.text.clear()
             }
         }

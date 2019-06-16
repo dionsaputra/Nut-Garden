@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<EditText xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/etAddFeed"
+    style="@style/TextAppearance.MaterialComponents.Body2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/solid_round_white_background"
+    android:gravity="start"
+    android:hint="Yuk ajak sekitarmu berolahraga bersama"
+    android:minHeight="120dp"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/normal_space"
+    android:paddingVertical="@dimen/small_space" />
